@@ -376,8 +376,8 @@
         }
 
         .celebration-text {
-            font-family: 'Dancing Script', cursive;
-            font-size: clamp(2.2rem, 7vw, 4.5rem);
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 3rem);
             color: white;
             text-align: center;
             padding: 30px;
@@ -386,9 +386,26 @@
                         0 0 20px rgba(255, 255, 255, 0.3),
                         3px 3px 8px rgba(0, 0, 0, 0.6);
             animation: bounceIn 0.8s ease;
-            font-weight: 700;
-            line-height: 1.5;
+            font-weight: 600;
+            line-height: 1.8;
             letter-spacing: 1px;
+        }
+
+        .celebration-text::before {
+            content: '💝';
+            display: block;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: heart-beat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heart-beat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
         }
 
         @keyframes bounceIn {

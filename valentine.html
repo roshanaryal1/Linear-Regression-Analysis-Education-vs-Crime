@@ -119,24 +119,31 @@
         /* Question text */
         h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            background: linear-gradient(45deg, #ff1744, #ff4081, #ff1744);
+            font-size: clamp(3rem, 10vw, 6rem);
+            color: #fff;
+            background: linear-gradient(45deg, #ff1744, #ff4081, #ff6b9d, #ff4081, #ff1744);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            background-size: 200% 200%;
+            background-size: 300% 300%;
             margin-bottom: 50px;
-            text-shadow: 0 0 20px rgba(255, 23, 68, 0.5),
-                         0 0 40px rgba(255, 64, 129, 0.3);
-            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
-            animation: pulse 2s ease-in-out infinite, gradient-shift 3s ease infinite;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8))
+                    drop-shadow(0 0 30px rgba(255, 23, 68, 0.6))
+                    drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.4));
+            animation: pulse 2s ease-in-out infinite, gradient-shift 5s ease infinite;
             position: relative;
+            font-weight: 700;
+            letter-spacing: 2px;
         }
 
         h1::before {
             content: '✨';
             position: absolute;
             left: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.6em;
             animation: sparkle 2s ease-in-out infinite;
         }
 
@@ -144,6 +151,9 @@
             content: '✨';
             position: absolute;
             right: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.6em;
             animation: sparkle 2s ease-in-out infinite 1s;
         }
 
@@ -152,7 +162,7 @@
                 transform: scale(1);
             }
             50% {
-                transform: scale(1.05);
+                transform: scale(1.08);
             }
         }
 
@@ -167,32 +177,70 @@
 
         @keyframes sparkle {
             0%, 100% {
-                opacity: 0.3;
-                transform: scale(0.8) rotate(0deg);
+                opacity: 0.4;
+                transform: translateY(-50%) scale(0.8) rotate(0deg);
             }
             50% {
                 opacity: 1;
-                transform: scale(1.2) rotate(180deg);
+                transform: translateY(-50%) scale(1.3) rotate(180deg);
             }
         }
 
         /* Romantic message */
         .romantic-message {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 25px 40px;
-            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 240, 245, 0.98) 100%);
+            padding: 30px 50px;
+            border-radius: 25px;
             margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 182, 193, 0.5);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.4),
+                       0 5px 15px rgba(0, 0, 0, 0.2),
+                       inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(255, 182, 193, 0.6);
+            position: relative;
+            animation: message-glow 3s ease-in-out infinite;
+        }
+
+        .romantic-message::before {
+            content: '💕';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            animation: float-heart 2s ease-in-out infinite;
+        }
+
+        @keyframes message-glow {
+            0%, 100% {
+                box-shadow: 0 15px 40px rgba(255, 105, 180, 0.4),
+                           0 5px 15px rgba(0, 0, 0, 0.2),
+                           inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            }
+            50% {
+                box-shadow: 0 15px 50px rgba(255, 105, 180, 0.6),
+                           0 5px 20px rgba(0, 0, 0, 0.3),
+                           inset 0 1px 0 rgba(255, 255, 255, 1);
+            }
+        }
+
+        @keyframes float-heart {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
         }
 
         .romantic-message p {
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
-            color: #c2185b;
-            font-weight: 500;
-            line-height: 1.6;
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: #d81b60;
+            font-weight: 600;
+            line-height: 1.8;
             margin: 0;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+            letter-spacing: 0.5px;
         }
 
         /* Buttons container */
@@ -329,13 +377,18 @@
 
         .celebration-text {
             font-family: 'Dancing Script', cursive;
-            font-size: clamp(2rem, 6vw, 4rem);
+            font-size: clamp(2.2rem, 7vw, 4.5rem);
             color: white;
             text-align: center;
-            padding: 20px;
-            max-width: 800px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            max-width: 900px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5),
+                        0 0 20px rgba(255, 255, 255, 0.3),
+                        3px 3px 8px rgba(0, 0, 0, 0.6);
             animation: bounceIn 0.8s ease;
+            font-weight: 700;
+            line-height: 1.5;
+            letter-spacing: 1px;
         }
 
         @keyframes bounceIn {
@@ -386,38 +439,68 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background: rgba(255, 255, 255, 0.3);
-            border: 2px solid white;
+            background: rgba(255, 255, 255, 0.9);
+            border: 3px solid rgba(255, 105, 180, 0.6);
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
+            width: 60px;
+            height: 60px;
+            font-size: 28px;
             cursor: pointer;
             z-index: 100;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
         }
 
         .mute-btn:hover {
-            background: rgba(255, 255, 255, 0.5);
-            transform: scale(1.1);
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.15);
+            box-shadow: 0 6px 25px rgba(255, 105, 180, 0.6);
+            border-color: rgba(255, 64, 129, 0.8);
         }
 
         /* Responsive design */
         @media (max-width: 600px) {
+            h1::before,
+            h1::after {
+                font-size: 0.5em;
+                left: -40px;
+            }
+
+            h1::after {
+                right: -40px;
+                left: auto;
+            }
+
+            .romantic-message {
+                padding: 20px 30px;
+            }
+
+            .romantic-message p {
+                font-size: 1.1rem;
+            }
+
             .buttons-container {
                 gap: 20px;
                 min-height: 250px;
             }
 
             button {
-                padding: 15px 35px;
+                padding: 15px 40px;
+                font-size: 1.3rem;
             }
 
             h1 {
                 margin-bottom: 30px;
+                font-size: 2.5rem;
+            }
+
+            .mute-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
             }
         }
     </style>
@@ -427,7 +510,7 @@
     <div class="heart-bg" id="heartBg"></div>
 
     <!-- Mute button -->
-    <button class="mute-btn" id="muteBtn" title="Toggle Music">🔊</button>
+    <button class="mute-btn" id="muteBtn" title="Click to Play Music">�</button>
 
     <!-- Main content -->
     <div class="container">
@@ -455,7 +538,8 @@
 
     <!-- Background music (optional) -->
     <audio id="bgMusic" loop>
-        <!-- Using a simple tone generation instead of external file -->
+        <source src="https://cdn.pixabay.com/audio/2022/03/10/audio_2c4d748cfc.mp3" type="audio/mpeg">
+        <!-- Romantic piano music -->
     </audio>
 
     <script>
@@ -468,7 +552,27 @@
         const bgMusic = document.getElementById('bgMusic');
 
         // Music state
-        let isMuted = true;
+        let isMuted = false;
+        let musicStarted = false;
+
+        // Function to start music
+        function startMusic() {
+            if (!musicStarted) {
+                bgMusic.play().then(() => {
+                    musicStarted = true;
+                    muteBtn.innerHTML = '🔊';
+                    muteBtn.title = 'Music Playing - Click to Mute';
+                }).catch((error) => {
+                    console.log('Music autoplay prevented:', error);
+                    muteBtn.innerHTML = '🔇';
+                    muteBtn.title = 'Click to Play Music';
+                });
+            }
+        }
+
+        // Start music on first user interaction
+        document.addEventListener('click', startMusic, { once: true });
+        document.addEventListener('touchstart', startMusic, { once: true });
 
         // Create floating hearts background
         function createFloatingHeart() {
@@ -595,13 +699,28 @@
 
         // Mute button toggle
         muteBtn.addEventListener('click', () => {
-            isMuted = !isMuted;
-            muteBtn.innerHTML = isMuted ? '🔊' : '🔇';
-            
-            if (!isMuted) {
-                // Note: Auto-playing audio requires user interaction first
-                // This is a placeholder - you can add actual audio file if needed
-                console.log('Music would play here');
+            if (!musicStarted) {
+                // First click - start music
+                bgMusic.play().then(() => {
+                    musicStarted = true;
+                    isMuted = false;
+                    muteBtn.innerHTML = '🔊';
+                    muteBtn.title = 'Music Playing - Click to Mute';
+                }).catch((error) => {
+                    console.log('Could not play music:', error);
+                });
+            } else {
+                // Toggle mute
+                isMuted = !isMuted;
+                if (isMuted) {
+                    bgMusic.pause();
+                    muteBtn.innerHTML = '🔇';
+                    muteBtn.title = 'Click to Play Music';
+                } else {
+                    bgMusic.play();
+                    muteBtn.innerHTML = '🔊';
+                    muteBtn.title = 'Music Playing - Click to Mute';
+                }
             }
         });
 

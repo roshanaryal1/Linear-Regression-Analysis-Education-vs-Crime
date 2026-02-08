@@ -503,6 +503,30 @@
                 font-size: 24px;
             }
         }
+
+        /* Mobile-first design adjustments */
+        @media (min-width: 600px) {
+            h1 {
+                font-size: clamp(3rem, 8vw, 5rem);
+            }
+
+            .romantic-message {
+                padding: 40px 60px;
+            }
+
+            .romantic-message p {
+                font-size: 1.5rem;
+            }
+
+            .buttons-container {
+                gap: 40px;
+            }
+
+            button {
+                padding: 20px 60px;
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>

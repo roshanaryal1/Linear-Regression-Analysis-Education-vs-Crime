@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💖</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('IMG_6131.JPEG');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Overlay to make text more readable */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(255, 182, 193, 0.4) 0%, rgba(255, 105, 180, 0.6) 50%, rgba(219, 112, 147, 0.75) 100%);
+            backdrop-filter: blur(2px);
+            z-index: 0;
+        }
+
+        /* Romantic glow effect */
+        body::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(255, 192, 203, 0.3) 0%, transparent 70%);
+            animation: glow-pulse 4s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% {
+                opacity: 0.5;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        /* Floating hearts background animation */
+        .heart-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            animation: float-up 8s infinite ease-in;
+            opacity: 0;
+            filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.6));
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.9;
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) scale(1);
+            }
+            90% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* Main container */
+        .container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            padding: 20px;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        /* Question text */
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            background: linear-gradient(45deg, #ff1744, #ff4081, #ff1744);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            margin-bottom: 50px;
+            text-shadow: 0 0 20px rgba(255, 23, 68, 0.5),
+                         0 0 40px rgba(255, 64, 129, 0.3);
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+            animation: pulse 2s ease-in-out infinite, gradient-shift 3s ease infinite;
+            position: relative;
+        }
+
+        h1::before {
+            content: '✨';
+            position: absolute;
+            left: -60px;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        h1::after {
+            content: '✨';
+            position: absolute;
+            right: -60px;
+            animation: sparkle 2s ease-in-out infinite 1s;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(0.8) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2) rotate(180deg);
+            }
+        }
+
+        /* Romantic message */
+        .romantic-message {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 182, 193, 0.5);
+        }
+
+        .romantic-message p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: #c2185b;
+            font-weight: 500;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Buttons container */
+        .buttons-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            position: relative;
+            min-height: 200px;
+        }
+
+        /* Button styles */
+        button {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 600;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #yesBtn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        #yesBtn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.15) rotate(-2deg);
+            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.6),
+                       0 0 30px rgba(240, 147, 251, 0.4);
+            animation: heartbeat 1s ease-in-out infinite;
+        }
+
+        #yesBtn:active {
+            transform: scale(1.05);
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1.15) rotate(-2deg);
+            }
+            50% {
+                transform: scale(1.2) rotate(-2deg);
+            }
+        }
+
+        #noBtn {
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            color: #333;
+            position: fixed;
+            transition: all 0.2s ease;
+        }
+
+        #noBtn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Celebration screen */
+        .celebration {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 50%, #6c5b7b 100%);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .celebration::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: celebration-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes celebration-glow {
+            0%, 100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .celebration.active {
+            display: flex;
+        }
+
+        .celebration-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2rem, 6vw, 4rem);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            max-width: 800px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: bounceIn 0.8s ease;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Big celebration hearts */
+        .big-heart {
+            position: absolute;
+            font-size: 80px;
+            animation: float-celebration 3s infinite ease-in-out;
+        }
+
+        @keyframes float-celebration {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(10deg);
+            }
+        }
+
+        /* Confetti */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff1744;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* Mute button */
+        .mute-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mute-btn:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .buttons-container {
+                gap: 20px;
+                min-height: 250px;
+            }
+
+            button {
+                padding: 15px 35px;
+            }
+
+            h1 {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background floating hearts -->
+    <div class="heart-bg" id="heartBg"></div>
+
+    <!-- Mute button -->
+    <button class="mute-btn" id="muteBtn" title="Toggle Music">🔊</button>
+
+    <!-- Main content -->
+    <div class="container">
+        <h1>Will you be my Valentine? 💖</h1>
+        <div class="romantic-message">
+            <p>Every moment with you feels like magic ✨<br>
+            You make my heart skip a beat 💕<br>
+            So here's the most important question...</p>
+        </div>
+        <div class="buttons-container">
+            <button id="yesBtn">Yes! 💖</button>
+            <button id="noBtn">No 😢</button>
+        </div>
+    </div>
+
+    <!-- Celebration screen -->
+    <div class="celebration" id="celebration">
+        <div class="celebration-text">
+            🎉 Yayyy! I knew you'd say yes! 🎉<br><br>
+            You've just made me the happiest person alive! ❤️<br>
+            I promise to cherish every moment with you 💕<br><br>
+            Let's make this Valentine's Day unforgettable! ✨
+        </div>
+    </div>
+
+    <!-- Background music (optional) -->
+    <audio id="bgMusic" loop>
+        <!-- Using a simple tone generation instead of external file -->
+    </audio>
+
+    <script>
+        // Get elements
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const celebration = document.getElementById('celebration');
+        const heartBg = document.getElementById('heartBg');
+        const muteBtn = document.getElementById('muteBtn');
+        const bgMusic = document.getElementById('bgMusic');
+
+        // Music state
+        let isMuted = true;
+
+        // Create floating hearts background
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            const heartEmojis = ['💕', '💖', '💗', '💓', '💝', '❤️', '🌹', '✨'];
+            heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heart.style.fontSize = (Math.random() * 25 + 15) + 'px';
+            heartBg.appendChild(heart);
+
+            // Remove heart after animation
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        // Generate hearts continuously
+        setInterval(createFloatingHeart, 400);
+
+        // Initialize some hearts
+        for (let i = 0; i < 10; i++) {
+            createFloatingHeart();
+        }
+
+        // Position No button initially
+        function positionNoButton() {
+            const containerWidth = window.innerWidth;
+            const containerHeight = window.innerHeight;
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
+
+            // Random position within viewport bounds
+            const maxX = containerWidth - btnWidth - 20;
+            const maxY = containerHeight - btnHeight - 20;
+            
+            const randomX = Math.max(20, Math.random() * maxX);
+            const randomY = Math.max(20, Math.random() * maxY);
+
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        // Initial position for No button
+        positionNoButton();
+
+        // Make No button dodge on mouseenter
+        noBtn.addEventListener('mouseenter', () => {
+            positionNoButton();
+        });
+
+        // Additional dodge on mousemove nearby (more aggressive dodging)
+        document.addEventListener('mousemove', (e) => {
+            const btnRect = noBtn.getBoundingClientRect();
+            const btnCenterX = btnRect.left + btnRect.width / 2;
+            const btnCenterY = btnRect.top + btnRect.height / 2;
+            
+            const distance = Math.sqrt(
+                Math.pow(e.clientX - btnCenterX, 2) + 
+                Math.pow(e.clientY - btnCenterY, 2)
+            );
+
+            // If mouse is within 100px, dodge!
+            if (distance < 100) {
+                positionNoButton();
+            }
+        });
+
+        // Try to click No button (just in case someone manages)
+        noBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            positionNoButton();
+        });
+
+        // Yes button click - CELEBRATION!
+        yesBtn.addEventListener('click', () => {
+            celebration.classList.add('active');
+            
+            // Create big celebration hearts
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    createCelebrationHeart();
+                }, i * 100);
+            }
+
+            // Create confetti
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    createConfetti();
+                }, i * 50);
+            }
+        });
+
+        // Create celebration hearts
+        function createCelebrationHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'big-heart';
+            heart.innerHTML = ['❤️', '💕', '💖', '💗', '💓', '💝'][Math.floor(Math.random() * 6)];
+            heart.style.left = Math.random() * 90 + '%';
+            heart.style.top = Math.random() * 90 + '%';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            celebration.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Create confetti
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.top = -10 + 'px';
+            confetti.style.background = ['#ff1744', '#f50057', '#ff4081', '#ffeb3b', '#ff9800'][Math.floor(Math.random() * 5)];
+            confetti.style.animationDelay = Math.random() * 2 + 's';
+            celebration.appendChild(confetti);
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 3000);
+        }
+
+        // Mute button toggle
+        muteBtn.addEventListener('click', () => {
+            isMuted = !isMuted;
+            muteBtn.innerHTML = isMuted ? '🔊' : '🔇';
+            
+            if (!isMuted) {
+                // Note: Auto-playing audio requires user interaction first
+                // This is a placeholder - you can add actual audio file if needed
+                console.log('Music would play here');
+            }
+        });
+
+        // Reposition No button on window resize
+        window.addEventListener('resize', () => {
+            positionNoButton();
+        });
+    </script>
+</body>
+</html>
